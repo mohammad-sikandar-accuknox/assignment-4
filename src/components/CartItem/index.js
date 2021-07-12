@@ -1,18 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import image from "../../images/im3.png";
 import { AiOutlineDelete } from "react-icons/ai";
 import { IoAdd } from "react-icons/io5";
 import { IoRemove } from "react-icons/io5";
+import { productDetailsContext } from "../../context/ProductDetailsProvider";
 
 function CartItem(props) {
-  const [num, setnum] = useState(props.product.cart);
-  const handleNumSub = () => {
-    if (num > 1) {
-      setnum((num) => --num);
-    }
+  const [productDetails, setProductDetails] = useContext(productDetailsContext);
+  const handleNumSub = (id) => {
+    console.log(productDetails.filter((product) => product.id === id)[0]);
+    let updatedProducts = productDetails.map((product) => {
+      if (product.id === id && product.cart > 0) {
+        product.cart = product.cart - 1;
+      }
+      return product;
+    });
+    setProductDetails(updatedProducts);
   };
-  const handleNumAdd = () => {
-    setnum((num) => ++num);
+  const handleNumAdd = (id) => {
+    console.log(id);
+    let updatedProducts = productDetails.map((product) => {
+      if (product.id === id) {
+        product.cart = product.cart + 1;
+      }
+      return product;
+    });
+    setProductDetails(updatedProducts);
   };
   return (
     <div style={styles.cartitem}>
@@ -56,9 +69,9 @@ function CartItem(props) {
               boxShadow:
                 "0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19)",
             }}
-            onClick={handleNumSub}
+            onClick={() => handleNumSub(props.product.id)}
           />
-          <span style={{ position: "absolute" }}>{num}</span>{" "}
+          <span style={{ position: "absolute" }}>{props.product.cart}</span>{" "}
           <IoAdd
             style={{
               border: "1px solid gery",
@@ -67,7 +80,7 @@ function CartItem(props) {
               boxShadow:
                 "0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19)",
             }}
-            onClick={handleNumAdd}
+            onClick={() => handleNumAdd(props.product.id)}
           />
           <span style={{ paddingLeft: "106px" }}>
             <AiOutlineDelete />
