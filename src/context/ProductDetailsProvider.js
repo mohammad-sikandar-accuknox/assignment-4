@@ -9,25 +9,25 @@ const ProductDetailsProvider = (props) => {
     {
       id: "w1",
       price: 199,
-      name: "Classic Maves",
+      name: "Classic Maves 1",
       cart: 0,
     },
     {
       id: "w2",
-      price: 199,
-      name: "Classic Maves",
+      price: 299,
+      name: "Classic Maves 2",
       cart: 0,
     },
     {
       id: "w3",
-      price: 199,
-      name: "Classic Maves",
+      price: 399,
+      name: "Classic Maves 3",
       cart: 0,
     },
     {
       id: "w4",
-      price: 199,
-      name: "Classic Maves",
+      price: 499,
+      name: "Classic Maves 4",
       cart: 0,
     },
   ]);

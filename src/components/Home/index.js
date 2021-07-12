@@ -9,7 +9,9 @@ function Home(props) {
 
   const cartNumber = () => {
     let counter = 0;
-    productDetails.map((product) => (product.cart > 0 ? counter++ : null));
+    productDetails.map((product) =>
+      product.cart > 0 ? (counter = counter + product.cart) : null
+    );
     return counter;
   };
   console.log(cartNumber());

@@ -26,7 +26,9 @@ function CartPage(props) {
         >
           <div style={styles.cartlist}>
             {productDetails.map((product) =>
-              product.cart > 0 ? <CartItem key={product.id} /> : null
+              product.cart > 0 ? (
+                <CartItem key={product.id} product={product} />
+              ) : null
             )}
             {/* <CartItem />
             <CartItem />

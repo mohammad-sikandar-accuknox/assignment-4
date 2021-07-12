@@ -5,7 +5,7 @@ import { IoAdd } from "react-icons/io5";
 import { IoRemove } from "react-icons/io5";
 
 function CartItem(props) {
-  const [num, setnum] = useState(1);
+  const [num, setnum] = useState(props.product.cart);
   const handleNumSub = () => {
     if (num > 1) {
       setnum((num) => --num);
@@ -31,7 +31,7 @@ function CartItem(props) {
         <div
           style={{ paddingTop: "5px", fontWeight: "600", fontSize: "medium" }}
         >
-          Classic Roselyn Mawes
+          {props.product.name}
         </div>
         <div
           style={{
@@ -41,7 +41,7 @@ function CartItem(props) {
             fontWeight: 500,
           }}
         >
-          $ 199.00
+          $ {props.product.price}
         </div>
         <div
           style={{

@@ -4,6 +4,7 @@ import image from "../../images/im3.png";
 import { IoHeartOutline } from "react-icons/io5";
 import { FcRegisteredTrademark } from "react-icons/fc";
 import { productDetailsContext } from "../../context/ProductDetailsProvider";
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 function ProductDetail(props) {
   const [productDetails, setProductDetails] = useContext(productDetailsContext);
@@ -24,23 +25,29 @@ function ProductDetail(props) {
   };
   const cartNumber = () => {
     let counter = 0;
-    productDetails.map((product) => (product.cart > 0 ? counter++ : null));
+    productDetails.map((product) =>
+      product.cart > 0 ? (counter = counter + product.cart) : null
+    );
     return counter;
   };
   return (
     <div style={styles.productdetail}>
       <Header detail cartNumber={cartNumber()} />
       <div style={styles.image}>
-        <img
-          style={{
-            height: "100%",
-            width: "91%",
-            borderRadius: "inherit",
-            paddingLeft: "17px",
-          }}
-          src={image}
-          alt={""}
-        />
+        <TransformWrapper>
+          <TransformComponent>
+            <img
+              style={{
+                height: "100%",
+                width: "91%",
+                borderRadius: "inherit",
+                paddingLeft: "17px",
+              }}
+              src={image}
+              alt={""}
+            />
+          </TransformComponent>
+        </TransformWrapper>
       </div>
       <div style={styles.detail}>
         <div
